@@ -34,15 +34,22 @@ struct MatchmakingView: View {
     ]
     
     var body: some View {
-        ScrollView {
-            LazyVStack(spacing: 16) {
-                ForEach(placeholderProfiles) { profile in
-                    ProfileCard(profile: profile)
+        NavigationStack {
+            ScrollView {
+                LazyVStack(spacing: 16) {
+                    ForEach(placeholderProfiles) { profile in
+                        NavigationLink {
+                            ProfileDetailView(profile: profile)
+                        } label: {
+                            ProfileCard(profile: profile)
+                                .foregroundColor(.primary) // This ensures text color stays consistent
+                        }
+                    }
                 }
+                .padding()
             }
-            .padding()
+            .navigationTitle("Find Partners")
         }
-        .navigationTitle("Find Partners")
     }
 }
 
@@ -85,6 +92,7 @@ struct ProfileCard: View {
         .padding()
         .background(Color.gray.opacity(0.1))
         .cornerRadius(12)
+        .contentShape(Rectangle())
     }
 }
 

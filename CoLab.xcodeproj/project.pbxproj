@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EF0193CC2D29B0B7009207EE /* ProfileDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0193CB2D29B0B7009207EE /* ProfileDetailView.swift */; };
 		EFD4D0F02D28771A0043F794 /* CoLabApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD4D0EF2D28771A0043F794 /* CoLabApp.swift */; };
 		EFD4D0F22D28771A0043F794 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD4D0F12D28771A0043F794 /* ContentView.swift */; };
 		EFD4D0F42D2877270043F794 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFD4D0F32D2877270043F794 /* Assets.xcassets */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EF0193CB2D29B0B7009207EE /* ProfileDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailView.swift; sourceTree = "<group>"; };
 		EFD4D0EC2D28771A0043F794 /* CoLab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoLab.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFD4D0EF2D28771A0043F794 /* CoLabApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoLabApp.swift; sourceTree = "<group>"; };
 		EFD4D0F12D28771A0043F794 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 				EFD4D11D2D287ECF0043F794 /* ConfigurationView.swift */,
 				EFD4D11F2D287F440043F794 /* MatchmakingView.swift */,
 				EFD4D1212D287F720043F794 /* ProfileView.swift */,
+				EF0193CB2D29B0B7009207EE /* ProfileDetailView.swift */,
 			);
 			path = CoLab;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EFD4D11A2D287CC80043F794 /* LoginView.swift in Sources */,
+				EF0193CC2D29B0B7009207EE /* ProfileDetailView.swift in Sources */,
 				EFD4D11E2D287ED00043F794 /* ConfigurationView.swift in Sources */,
 				EFD4D11C2D287D2A0043F794 /* MainView.swift in Sources */,
 				EFD4D1202D287F440043F794 /* MatchmakingView.swift in Sources */,
