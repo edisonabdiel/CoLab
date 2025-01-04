@@ -1,3 +1,10 @@
+//
+//  LoginView.swift
+//  CoLab
+//
+//  Created by Edison Abdiel on 03.01.25.
+//
+
 import SwiftUI
 
 struct LoginView: View {
@@ -20,12 +27,16 @@ struct LoginView: View {
                 .padding(.horizontal)
             
             Button("Login") {
-                // Simulate login - replace with actual authentication
-                appState.isUserLoggedIn = true
-                appState.currentUser = User(id: "1", name: username)
+                appState.signIn(username: username)
             }
             .buttonStyle(.borderedProminent)
         }
         .padding()
+        .preferredColorScheme(.dark)
     }
-} 
+}
+
+#Preview {
+    LoginView()
+        .environmentObject(AppState())
+}

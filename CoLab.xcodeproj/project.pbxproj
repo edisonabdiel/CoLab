@@ -14,6 +14,11 @@
 		EFD4D1012D28772B0043F794 /* CoLabTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD4D1002D28772B0043F794 /* CoLabTests.swift */; };
 		EFD4D10B2D28772B0043F794 /* CoLabUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD4D10A2D28772B0043F794 /* CoLabUITests.swift */; };
 		EFD4D10D2D28772B0043F794 /* CoLabUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD4D10C2D28772B0043F794 /* CoLabUITestsLaunchTests.swift */; };
+		EFD4D11A2D287CC80043F794 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD4D1192D287CC70043F794 /* LoginView.swift */; };
+		EFD4D11C2D287D2A0043F794 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD4D11B2D287D290043F794 /* MainView.swift */; };
+		EFD4D11E2D287ED00043F794 /* ConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD4D11D2D287ECF0043F794 /* ConfigurationView.swift */; };
+		EFD4D1202D287F440043F794 /* MatchmakingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD4D11F2D287F440043F794 /* MatchmakingView.swift */; };
+		EFD4D1222D287F720043F794 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD4D1212D287F720043F794 /* ProfileView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +49,11 @@
 		EFD4D1062D28772B0043F794 /* CoLabUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoLabUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFD4D10A2D28772B0043F794 /* CoLabUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoLabUITests.swift; sourceTree = "<group>"; };
 		EFD4D10C2D28772B0043F794 /* CoLabUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoLabUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		EFD4D1192D287CC70043F794 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		EFD4D11B2D287D290043F794 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		EFD4D11D2D287ECF0043F794 /* ConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationView.swift; sourceTree = "<group>"; };
+		EFD4D11F2D287F440043F794 /* MatchmakingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchmakingView.swift; sourceTree = "<group>"; };
+		EFD4D1212D287F720043F794 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +108,11 @@
 				EFD4D0F12D28771A0043F794 /* ContentView.swift */,
 				EFD4D0F32D2877270043F794 /* Assets.xcassets */,
 				EFD4D0F52D2877270043F794 /* Preview Content */,
+				EFD4D1192D287CC70043F794 /* LoginView.swift */,
+				EFD4D11B2D287D290043F794 /* MainView.swift */,
+				EFD4D11D2D287ECF0043F794 /* ConfigurationView.swift */,
+				EFD4D11F2D287F440043F794 /* MatchmakingView.swift */,
+				EFD4D1212D287F720043F794 /* ProfileView.swift */,
 			);
 			path = CoLab;
 			sourceTree = "<group>";
@@ -257,7 +272,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFD4D11A2D287CC80043F794 /* LoginView.swift in Sources */,
+				EFD4D11E2D287ED00043F794 /* ConfigurationView.swift in Sources */,
+				EFD4D11C2D287D2A0043F794 /* MainView.swift in Sources */,
+				EFD4D1202D287F440043F794 /* MatchmakingView.swift in Sources */,
 				EFD4D0F22D28771A0043F794 /* ContentView.swift in Sources */,
+				EFD4D1222D287F720043F794 /* ProfileView.swift in Sources */,
 				EFD4D0F02D28771A0043F794 /* CoLabApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
