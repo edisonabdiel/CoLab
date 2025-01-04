@@ -1,16 +1,19 @@
 import SwiftUI
 
-// Make sure FilterOption is defined before the view
-enum FilterOption: String, CaseIterable {
-    case skills = "Skills"
-    case area = "Area"
-    case availability = "Availability"
-    case lastOnline = "Last Online"
+// Update FilterOption to only include Last Online
+struct FilterOption: Identifiable, Hashable {
+    let id = UUID()
+    let name: String
+    var isActive: Bool
+    
+    static let lastOnline = FilterOption(name: "Last Online", isActive: false)
 }
 
 struct MatchmakingView: View {
-    @State private var selectedFilter: FilterOption = .skills
     @State private var searchText = ""
+    @State private var filters: [FilterOption] = [
+        .lastOnline
+    ]
     
     // Updated placeholder data
     let placeholderProfiles = [
@@ -45,30 +48,77 @@ struct MatchmakingView: View {
             availability: "Available: Weekdays",
             lastOnline: "Just now",
             area: "Berlin, Germany"
+        ),
+        // New profiles
+        PlaceholderProfile(
+            id: "5",
+            name: "@web_ninja",
+            skills: ["TypeScript", "Angular", "AWS"],
+            availability: "Available: Evening",
+            lastOnline: "30m ago",
+            area: "Toronto, Canada"
+        ),
+        PlaceholderProfile(
+            id: "6",
+            name: "@mobile_guru",
+            skills: ["Kotlin", "Android", "Flutter"],
+            availability: "Available: Weekdays",
+            lastOnline: "3h ago",
+            area: "Sydney, Australia"
         )
     ]
     
     // Updated filtering logic
     var filteredProfiles: [PlaceholderProfile] {
-        if searchText.isEmpty {
-            return placeholderProfiles
+        let lowercasedSearch = searchText.lowercased()
+        let activeFilters = filters.filter { $0.isActive }
+        
+        // First filter the profiles based on search text
+        let searchFiltered = if searchText.isEmpty {
+            placeholderProfiles
+        } else if searchText.hasPrefix("@") {
+            // Search for specific user
+            placeholderProfiles.filter { profile in
+                profile.name.lowercased().contains(lowercasedSearch)
+            }
+        } else {
+            // Global search across all fields
+            placeholderProfiles.filter { profile in
+                profile.name.lowercased().contains(lowercasedSearch) ||
+                profile.skills.contains { $0.lowercased().contains(lowercasedSearch) } ||
+                profile.area.lowercased().contains(lowercasedSearch) ||
+                profile.availability.lowercased().contains(lowercasedSearch)
+            }
         }
         
-        let lowercasedSearch = searchText.lowercased()
-        
-        return placeholderProfiles.filter { profile in
-            switch selectedFilter {
-            case .skills:
-                return profile.skills.contains { skill in
-                    skill.lowercased().contains(lowercasedSearch)
+        // Then sort if Last Online filter is active
+        return activeFilters.isEmpty ? searchFiltered : sorted(profiles: searchFiltered)
+    }
+    
+    // Simplified sorting function
+    private func sorted(profiles: [PlaceholderProfile]) -> [PlaceholderProfile] {
+        profiles.sorted { profile1, profile2 in
+            let timeOrder = ["Just now": 1, "m ago": 2, "h ago": 3, "d ago": 4]
+            let time1 = profile1.lastOnline
+            let time2 = profile2.lastOnline
+            
+            func getSortPriority(_ time: String) -> Int {
+                for (key, value) in timeOrder {
+                    if time.contains(key) { return value }
                 }
-            case .area:
-                return profile.area.lowercased().contains(lowercasedSearch)
-            case .availability:
-                return profile.availability.lowercased().contains(lowercasedSearch)
-            case .lastOnline:
-                return profile.lastOnline.lowercased().contains(lowercasedSearch)
+                return 5
             }
+            
+            let priority1 = getSortPriority(time1)
+            let priority2 = getSortPriority(time2)
+            
+            if priority1 == priority2 {
+                let number1 = Int(time1.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()) ?? 0
+                let number2 = Int(time2.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()) ?? 0
+                return number1 < number2
+            }
+            
+            return priority1 < priority2
         }
     }
     
@@ -81,7 +131,7 @@ struct MatchmakingView: View {
                     HStack {
                         Image(systemName: "magnifyingglass")
                             .foregroundColor(.gray)
-                        TextField("Search \(selectedFilter.rawValue.lowercased())...", text: $searchText)
+                        TextField("Search globally or @username...", text: $searchText)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .autocapitalization(.none)
                     }
@@ -90,13 +140,12 @@ struct MatchmakingView: View {
                     // Filter Options
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 12) {
-                            ForEach(FilterOption.allCases, id: \.self) { filter in
+                            ForEach($filters) { $filter in
                                 FilterChip(
-                                    title: filter.rawValue,
-                                    isSelected: filter == selectedFilter
+                                    title: filter.name,
+                                    isSelected: filter.isActive
                                 ) {
-                                    selectedFilter = filter
-                                    searchText = "" // Clear search when changing filters
+                                    filter.isActive.toggle()
                                 }
                             }
                         }
