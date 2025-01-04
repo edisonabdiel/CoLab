@@ -33,6 +33,10 @@ struct ProfileDetailView: View {
                             .fontWeight(.bold)
                             .padding(.top, 48)
                         
+                        Text(profile.area)
+                            .font(.subheadline)
+                            .foregroundColor(.gray)
+                        
                         Text("Last online: \(profile.lastOnline)")
                             .foregroundColor(.gray)
                     }
@@ -73,7 +77,7 @@ struct ProfileDetailView: View {
                     Button(action: {
                         // Placeholder for contact action
                     }) {
-                        Text("Contact")
+                        Text("Request to CoLab")
                             .font(.headline)
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
@@ -97,7 +101,8 @@ struct ProfileDetailView: View {
             name: "@alex_johnson",
             skills: ["JavaScript", "React"],
             availability: "Available: Weekends",
-            lastOnline: "2h ago"
+            lastOnline: "2h ago",
+            area: "San Francisco, CA"
         ))
     }
     .preferredColorScheme(.dark)

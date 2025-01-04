@@ -38,7 +38,8 @@ class AppState: ObservableObject {
                 "Weekdays": "9:00 AM - 5:00 PM",
                 "Weekends": "Not Available"
             ],
-            timezone: "PST"
+            timezone: "PST",
+            area: "San Francisco, CA"
         )
         isUserLoggedIn = true
     }
@@ -51,4 +52,5 @@ struct User: Identifiable {
     let skills: [String]
     let availability: [String: String]
     let timezone: String
+    let area: String
 }

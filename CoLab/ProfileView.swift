@@ -7,7 +7,7 @@ struct ProfileView: View {
         ScrollView {
             VStack(spacing: 0) {
                 // Cover Image Area
-                ZStack(alignment: .bottomTrailing) {
+                ZStack(alignment: .bottomLeading) {
                     // Cover placeholder
                     Rectangle()
                         .fill(Color.gray.opacity(0.3))
@@ -21,17 +21,24 @@ struct ProfileView: View {
                             Circle()
                                 .stroke(Color(.systemBackground), lineWidth: 4)
                         )
-                        .offset(x: -16, y: 60)
+                        .offset(x: 16, y: 60)
                 }
                 
                 // Content
-                VStack(alignment: .leading, spacing: 16) {
-                    Text(appState.currentUser?.name ?? "User Name")
-                        .font(.title)
-                        .fontWeight(.bold)
-                        .padding(.top, 48)
+                VStack(alignment: .leading, spacing: 24) {
+                    // Name and basic info
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text(appState.currentUser?.name ?? "User Name")
+                            .font(.title)
+                            .fontWeight(.bold)
+                            .padding(.top, 48)
+                        
+                        Text(appState.currentUser?.area ?? "Location not set")
+                            .font(.subheadline)
+                            .foregroundColor(.gray)
+                    }
                     
-                    // Bio
+                    // Bio section
                     VStack(alignment: .leading, spacing: 8) {
                         Text("Bio")
                             .font(.headline)
@@ -39,7 +46,7 @@ struct ProfileView: View {
                             .foregroundColor(.secondary)
                     }
                     
-                    // Skills
+                    // Skills section
                     VStack(alignment: .leading, spacing: 8) {
                         Text("Skills")
                             .font(.headline)
@@ -52,7 +59,7 @@ struct ProfileView: View {
                         }
                     }
                     
-                    // Availability
+                    // Availability section
                     VStack(alignment: .leading, spacing: 8) {
                         Text("Availability")
                             .font(.headline)
@@ -65,9 +72,23 @@ struct ProfileView: View {
                             }
                         }
                         Text("Timezone: \(appState.currentUser?.timezone ?? "Not set")")
-                            .foregroundColor(.secondary)
                             .font(.subheadline)
+                            .foregroundColor(.secondary)
                     }
+                    
+                    // Edit Profile Button
+                    Button(action: {
+                        // Placeholder for edit action
+                    }) {
+                        Text("Edit Profile")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(Color.blue)
+                            .cornerRadius(12)
+                    }
+                    .padding(.top, 16)
                 }
                 .padding()
             }

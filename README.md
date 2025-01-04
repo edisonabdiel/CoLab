@@ -17,7 +17,7 @@ CoLab is a SwiftUI-based iOS application designed to connect developers for coll
   - Timezone information
 
 - **Matchmaking System**
-  - Browse potential collaborators
+  - Browse potential CoLabs
   - Detailed profile views
   - Skills-based filtering (coming soon)
   - Availability matching (coming soon)
