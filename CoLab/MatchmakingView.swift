@@ -192,13 +192,15 @@ struct MatchmakingView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .principal) {
-                    HStack(spacing: 8) {
+                    HStack {
                         Text("Find CoLabs")
-                            .font(.headline)
+                            .font(.title3.bold())
                         Spacer()
                         IconSet.Logo.standard()
-                            .frame(width: 32, height: 32)
+                            .frame(width: 36, height: 36)
                     }
+                    .frame(maxWidth: .infinity)
+                    .padding(.horizontal)
                 }
             }
         }

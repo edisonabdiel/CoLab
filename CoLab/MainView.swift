@@ -17,27 +17,24 @@ struct MainView: View {
             MatchmakingView()
                 .tag(0)
                 .tabItem {
-                    Image(systemName: "person.2.fill")
-                    Text("Match")
+                    IconSet.TabBar.matchIcon()
                 }
             
             // Profile Tab
             ProfileView()
                 .tag(1)
                 .tabItem {
-                    Image(systemName: "person.circle.fill")
-                    Text("Profile")
+                    IconSet.TabBar.profileIcon()
                 }
             
             // Settings Tab
             ConfigurationView()
                 .tag(2)
                 .tabItem {
-                    Image(systemName: "gearshape.fill")
-                    Text("Settings")
+                    IconSet.TabBar.settingsIcon()
                 }
         }
-        .tint(.white)
+        .tint(.blue)
     }
 }
 

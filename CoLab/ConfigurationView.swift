@@ -2,40 +2,72 @@ import SwiftUI
 
 struct ConfigurationView: View {
     @EnvironmentObject var appState: AppState
+    @State private var isPrivateAccount = false
+    @State private var showOnlineStatus = true
+    @State private var pushNotifications = true
+    @State private var emailAlerts = true
+    @State private var selectedLanguage = "English"
+    @State private var isDarkMode = true
     
     var body: some View {
-        List {
-            Section("Account") {
-                Button(role: .destructive) {
-                    appState.signOut()
-                } label: {
-                    Label("Sign Out", systemImage: "rectangle.portrait.and.arrow.right")
-                }
-            }
-            
-            Section("App Settings") {
-                // We'll add more settings here later
-                NavigationLink {
-                    Text("Notifications")
-                } label: {
-                    Label("Notifications", systemImage: "bell.fill")
+        NavigationStack {
+            List {
+                // Profile Settings
+                Section("Profile Settings") {
+                    NavigationLink {
+                        Text("Edit Profile View")
+                    } label: {
+                        Text("Edit Profile")
+                    }
+                    
+                    HStack {
+                        Text("Change Avatar")
+                        Spacer()
+                        Text("Edit")
+                            .foregroundColor(.blue)
+                    }
                 }
                 
-                NavigationLink {
-                    Text("Privacy")
-                } label: {
-                    Label("Privacy", systemImage: "lock.fill")
+                // Privacy
+                Section("Privacy") {
+                    Toggle("Private Account", isOn: $isPrivateAccount)
+                        .tint(.green)
+                    Toggle("Show Online Status", isOn: $showOnlineStatus)
+                        .tint(.green)
+                }
+                
+                // Notifications
+                Section("Notifications") {
+                    Toggle("Push Notifications", isOn: $pushNotifications)
+                        .tint(.green)
+                    Toggle("Email Alerts", isOn: $emailAlerts)
+                        .tint(.green)
+                }
+                
+                // Account Preferences
+                Section("Account Preferences") {
+                    HStack {
+                        Text("Language")
+                        Spacer()
+                        Text(selectedLanguage)
+                            .foregroundColor(.blue)
+                    }
+                    
+                    HStack {
+                        Text("Theme")
+                        Spacer()
+                        Text(isDarkMode ? "Dark" : "Light")
+                            .foregroundColor(.blue)
+                    }
                 }
             }
+            .navigationTitle("Settings")
         }
-        .navigationTitle("Settings")
     }
 }
 
 #Preview {
-    NavigationStack {
-        ConfigurationView()
-            .environmentObject(AppState())
-    }
-    .preferredColorScheme(.dark)
+    ConfigurationView()
+        .environmentObject(AppState())
+        .preferredColorScheme(.dark)
 }
