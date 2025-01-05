@@ -14,6 +14,10 @@ struct LoginView: View {
     
     var body: some View {
         VStack(spacing: 20) {
+            IconSet.Logo.large()
+                .padding(.top, 40)
+                .padding(.bottom, 20)
+            
             Text("Welcome to CoLab")
                 .font(.largeTitle)
                 .fontWeight(.bold)

@@ -126,7 +126,7 @@ struct MatchmakingView: View {
         NavigationStack {
             VStack(spacing: 0) {
                 // Search and Filter Bar
-                VStack(spacing: 12) {
+                VStack(spacing: 8) {
                     // Search Bar
                     HStack {
                         Image(systemName: "magnifyingglass")
@@ -139,7 +139,7 @@ struct MatchmakingView: View {
                     
                     // Filter Options
                     ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 12) {
+                        HStack(spacing: 8) {
                             ForEach($filters) { $filter in
                                 FilterChip(
                                     title: filter.name,
@@ -152,14 +152,14 @@ struct MatchmakingView: View {
                         .padding(.horizontal)
                     }
                 }
-                .padding(.vertical, 12)
-                .background(Color.gray.opacity(0.1))
+                .padding(.vertical, 8)
+                .background(Color(uiColor: .systemGroupedBackground))
                 
                 // Results count
                 HStack {
                     Text("\(filteredProfiles.count) results")
-                        .foregroundColor(.gray)
-                        .font(.caption)
+                        .foregroundColor(.secondary)
+                        .font(.footnote)
                         .padding(.horizontal)
                     Spacer()
                 }
@@ -167,16 +167,14 @@ struct MatchmakingView: View {
                 
                 // Profile List
                 if filteredProfiles.isEmpty {
-                    VStack(spacing: 20) {
-                        Text("No matches found")
-                            .font(.headline)
-                        Text("Try adjusting your search criteria")
-                            .foregroundColor(.gray)
-                    }
-                    .padding(.top, 40)
+                    ContentUnavailableView(
+                        "No Matches Found",
+                        systemImage: "person.2.slash",
+                        description: Text("Try adjusting your search criteria")
+                    )
                 } else {
                     ScrollView {
-                        LazyVStack(spacing: 16) {
+                        LazyVStack(spacing: 12) {
                             ForEach(filteredProfiles) { profile in
                                 NavigationLink {
                                     ProfileDetailView(profile: profile)
@@ -186,11 +184,23 @@ struct MatchmakingView: View {
                                 }
                             }
                         }
-                        .padding()
+                        .padding(.horizontal)
+                    }
+                    .padding(.top, 4)
+                }
+            }
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    HStack(spacing: 8) {
+                        Text("Find CoLabs")
+                            .font(.headline)
+                        Spacer()
+                        IconSet.Logo.standard()
+                            .frame(width: 32, height: 32)
                     }
                 }
             }
-            .navigationTitle("Find CoLabs")
         }
     }
 }
@@ -207,7 +217,7 @@ struct FilterChip: View {
                 .font(.subheadline)
                 .padding(.horizontal, 16)
                 .padding(.vertical, 8)
-                .background(isSelected ? Color.blue : Color.gray.opacity(0.2))
+                .background(isSelected ? BrandKit.primary : Color.gray.opacity(0.2))
                 .foregroundColor(isSelected ? .white : .primary)
                 .cornerRadius(20)
         }
@@ -219,13 +229,13 @@ struct ProfileCard: View {
     let profile: PlaceholderProfile
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
+        VStack(alignment: .leading, spacing: 10) {
             // Profile header
-            HStack(spacing: 16) {
+            HStack(alignment: .top, spacing: 12) {
                 // Profile picture placeholder
                 Circle()
-                    .fill(Color.gray.opacity(0.5))
-                    .frame(width: 60, height: 60)
+                    .fill(Color(uiColor: .systemGray4))
+                    .frame(width: 50, height: 50)
                 
                 VStack(alignment: .leading, spacing: 4) {
                     Text(profile.name)
@@ -233,29 +243,28 @@ struct ProfileCard: View {
                     
                     Text(profile.area)
                         .font(.subheadline)
-                        .foregroundColor(.gray)
+                        .foregroundColor(.secondary)
                     
                     // Skills
-                    Text("Skills: \(profile.skills.joined(separator: ", "))")
-                        .font(.subheadline)
-                        .foregroundColor(.gray)
+                    Text(profile.skills.joined(separator: " · "))
+                        .font(.footnote)
+                        .foregroundColor(.secondary)
+                        .lineLimit(1)
                     
-                    // Availability
-                    Text(profile.availability)
-                        .font(.subheadline)
-                        .foregroundColor(.gray)
+                    HStack {
+                        Text(profile.availability)
+                            .font(.footnote)
+                            .foregroundColor(.secondary)
+                        Spacer()
+                        Text(profile.lastOnline)
+                            .font(.footnote)
+                            .foregroundColor(.secondary)
+                    }
                 }
-                
-                Spacer()
             }
-            
-            // Last online status
-            Text("Last online: \(profile.lastOnline)")
-                .font(.caption)
-                .foregroundColor(.gray)
         }
-        .padding()
-        .background(Color.gray.opacity(0.1))
+        .padding(12)
+        .background(Color(uiColor: .secondarySystemGroupedBackground))
         .cornerRadius(12)
     }
 }
