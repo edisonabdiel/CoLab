@@ -3,6 +3,18 @@ import SwiftUI
 struct ProfileDetailView: View {
     let profile: PlaceholderProfile
     
+    // Define grid layout
+    private let columns = [
+        GridItem(.flexible()),
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
+    
+    // Helper function to clean availability text
+    private func cleanAvailability(_ text: String) -> String {
+        return text.replacingOccurrences(of: "Available: ", with: "")
+    }
+    
     var body: some View {
         ScrollView {
             VStack(spacing: 0) {
@@ -26,24 +38,43 @@ struct ProfileDetailView: View {
                 
                 // Content
                 VStack(alignment: .leading, spacing: 24) {
-                    // Name and basic info
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text(profile.name)
-                            .font(.title)
-                            .fontWeight(.bold)
-                            .padding(.top, 48)
+                    // Name and basic info with Poke button
+                    HStack(alignment: .top) {
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text(profile.name)
+                                .font(.title)
+                                .fontWeight(.bold)
+                            
+                            Text(profile.area)
+                                .font(.subheadline)
+                                .foregroundColor(.gray)
+                            
+                            Text("Last online: \(profile.lastOnline)")
+                                .foregroundColor(.gray)
+                        }
                         
-                        Text(profile.area)
+                        Spacer()
+                        
+                        Button(action: {
+                            // Placeholder for poke action
+                        }) {
+                            HStack(spacing: 4) {
+                                Image(systemName: "hand.point.right.fill")
+                                Text("Poke")
+                            }
                             .font(.subheadline)
-                            .foregroundColor(.gray)
-                        
-                        Text("Last online: \(profile.lastOnline)")
-                            .foregroundColor(.gray)
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 12)
+                            .padding(.vertical, 8)
+                            .background(Color.green)
+                            .cornerRadius(20)
+                        }
                     }
+                    .padding(.top, 48)
                     
-                    // Bio section
+                    // In a Nutshell section
                     VStack(alignment: .leading, spacing: 8) {
-                        Text("Bio")
+                        Text("In a Nutshell")
                             .font(.headline)
                         Text("I'm a passionate developer looking to collaborate on exciting projects. Let's build something amazing together!")
                             .foregroundColor(.secondary)
@@ -66,26 +97,22 @@ struct ProfileDetailView: View {
                     VStack(alignment: .leading, spacing: 8) {
                         Text("Availability")
                             .font(.headline)
-                        Text(profile.availability)
-                            .foregroundColor(.secondary)
-                        Text("Timezone: PST")
-                            .font(.subheadline)
+                        Text(cleanAvailability(profile.availability))
                             .foregroundColor(.secondary)
                     }
                     
-                    // Contact button
-                    Button(action: {
-                        // Placeholder for contact action
-                    }) {
-                        Text("Request to CoLab")
+                    // Show, don't tell section
+                    VStack(alignment: .leading, spacing: 12) {
+                        Text("Show, don't tell")
                             .font(.headline)
-                            .foregroundColor(.white)
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(Color.blue)
-                            .cornerRadius(12)
+                        
+                        LazyVGrid(columns: columns, spacing: 12) {
+                            ForEach(0..<12, id: \.self) { index in
+                                PortfolioItem()
+                            }
+                        }
                     }
-                    .padding(.top, 16)
+                    .padding(.top, 8)
                 }
                 .padding()
             }

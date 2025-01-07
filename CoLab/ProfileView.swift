@@ -3,6 +3,13 @@ import SwiftUI
 struct ProfileView: View {
     @EnvironmentObject var appState: AppState
     
+    // Define grid layout
+    private let columns = [
+        GridItem(.flexible()),
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
+    
     var body: some View {
         ScrollView {
             VStack(spacing: 0) {
@@ -38,9 +45,9 @@ struct ProfileView: View {
                             .foregroundColor(.gray)
                     }
                     
-                    // Bio section
+                    // In a Nutshell section
                     VStack(alignment: .leading, spacing: 8) {
-                        Text("Bio")
+                        Text("In a Nutshell")
                             .font(.headline)
                         Text(appState.currentUser?.bio ?? "No bio available")
                             .foregroundColor(.secondary)
@@ -71,10 +78,20 @@ struct ProfileView: View {
                                 )
                             }
                         }
-                        Text("Timezone: \(appState.currentUser?.timezone ?? "Not set")")
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
                     }
+                    
+                    // Show, don't tell section
+                    VStack(alignment: .leading, spacing: 12) {
+                        Text("Show, don't tell")
+                            .font(.headline)
+                        
+                        LazyVGrid(columns: columns, spacing: 12) {
+                            ForEach(0..<12, id: \.self) { index in
+                                PortfolioItem()
+                            }
+                        }
+                    }
+                    .padding(.top, 8)
                     
                     // Edit Profile Button
                     Button(action: {

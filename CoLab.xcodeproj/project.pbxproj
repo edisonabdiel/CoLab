@@ -12,6 +12,7 @@
 		EF0193D22D2AFCAD009207EE /* BrandKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0193D12D2AFCAD009207EE /* BrandKit.swift */; };
 		EF0193D62D2AFD5D009207EE /* AppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0193D52D2AFD5D009207EE /* AppIconView.swift */; };
 		EF0193D82D2AFD8F009207EE /* ExportAppIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0193D72D2AFD8F009207EE /* ExportAppIcon.swift */; };
+		EF0193E62D2D9E91009207EE /* SharedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0193E52D2D9E91009207EE /* SharedView.swift */; };
 		EFD4D0F02D28771A0043F794 /* CoLabApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD4D0EF2D28771A0043F794 /* CoLabApp.swift */; };
 		EFD4D0F22D28771A0043F794 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD4D0F12D28771A0043F794 /* ContentView.swift */; };
 		EFD4D0F42D2877270043F794 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFD4D0F32D2877270043F794 /* Assets.xcassets */; };
@@ -49,6 +50,7 @@
 		EF0193D12D2AFCAD009207EE /* BrandKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandKit.swift; sourceTree = "<group>"; };
 		EF0193D52D2AFD5D009207EE /* AppIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconView.swift; sourceTree = "<group>"; };
 		EF0193D72D2AFD8F009207EE /* ExportAppIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportAppIcon.swift; sourceTree = "<group>"; };
+		EF0193E52D2D9E91009207EE /* SharedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedView.swift; sourceTree = "<group>"; };
 		EFD4D0EC2D28771A0043F794 /* CoLab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoLab.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFD4D0EF2D28771A0043F794 /* CoLabApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoLabApp.swift; sourceTree = "<group>"; };
 		EFD4D0F12D28771A0043F794 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				EF0193CB2D29B0B7009207EE /* ProfileDetailView.swift */,
 				EF0193CF2D2AFAD3009207EE /* IconSet.swift */,
 				EF0193D12D2AFCAD009207EE /* BrandKit.swift */,
+				EF0193E52D2D9E91009207EE /* SharedView.swift */,
 			);
 			path = CoLab;
 			sourceTree = "<group>";
@@ -297,6 +300,7 @@
 			files = (
 				EFD4D11A2D287CC80043F794 /* LoginView.swift in Sources */,
 				EF0193CC2D29B0B7009207EE /* ProfileDetailView.swift in Sources */,
+				EF0193E62D2D9E91009207EE /* SharedView.swift in Sources */,
 				EF0193D82D2AFD8F009207EE /* ExportAppIcon.swift in Sources */,
 				EFD4D11E2D287ED00043F794 /* ConfigurationView.swift in Sources */,
 				EFD4D11C2D287D2A0043F794 /* MainView.swift in Sources */,

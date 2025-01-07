@@ -11,9 +11,6 @@ struct FilterOption: Identifiable, Hashable {
 
 struct MatchmakingView: View {
     @State private var searchText = ""
-    @State private var filters: [FilterOption] = [
-        .lastOnline
-    ]
     
     // Updated placeholder data
     let placeholderProfiles = [
@@ -49,7 +46,6 @@ struct MatchmakingView: View {
             lastOnline: "Just now",
             area: "Berlin, Germany"
         ),
-        // New profiles
         PlaceholderProfile(
             id: "5",
             name: "@web_ninja",
@@ -71,9 +67,7 @@ struct MatchmakingView: View {
     // Updated filtering logic
     var filteredProfiles: [PlaceholderProfile] {
         let lowercasedSearch = searchText.lowercased()
-        let activeFilters = filters.filter { $0.isActive }
         
-        // First filter the profiles based on search text
         let searchFiltered = if searchText.isEmpty {
             placeholderProfiles
         } else if searchText.hasPrefix("@") {
@@ -91,11 +85,11 @@ struct MatchmakingView: View {
             }
         }
         
-        // Then sort if Last Online filter is active
-        return activeFilters.isEmpty ? searchFiltered : sorted(profiles: searchFiltered)
+        // Always sort by last online
+        return sorted(profiles: searchFiltered)
     }
     
-    // Simplified sorting function
+    // Sorting function
     private func sorted(profiles: [PlaceholderProfile]) -> [PlaceholderProfile] {
         profiles.sorted { profile1, profile2 in
             let timeOrder = ["Just now": 1, "m ago": 2, "h ago": 3, "d ago": 4]
@@ -125,9 +119,8 @@ struct MatchmakingView: View {
     var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
-                // Search and Filter Bar
+                // Search Bar
                 VStack(spacing: 8) {
-                    // Search Bar
                     HStack {
                         Image(systemName: "magnifyingglass")
                             .foregroundColor(.gray)
@@ -136,21 +129,6 @@ struct MatchmakingView: View {
                             .autocapitalization(.none)
                     }
                     .padding(.horizontal)
-                    
-                    // Filter Options
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 8) {
-                            ForEach($filters) { $filter in
-                                FilterChip(
-                                    title: filter.name,
-                                    isSelected: filter.isActive
-                                ) {
-                                    filter.isActive.toggle()
-                                }
-                            }
-                        }
-                        .padding(.horizontal)
-                    }
                 }
                 .padding(.vertical, 8)
                 .background(Color(uiColor: .systemGroupedBackground))
@@ -230,6 +208,10 @@ struct FilterChip: View {
 struct ProfileCard: View {
     let profile: PlaceholderProfile
     
+    private func cleanAvailability(_ text: String) -> String {
+        return text.replacingOccurrences(of: "Available: ", with: "")
+    }
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             // Profile header
@@ -254,7 +236,7 @@ struct ProfileCard: View {
                         .lineLimit(1)
                     
                     HStack {
-                        Text(profile.availability)
+                        Text(cleanAvailability(profile.availability))
                             .font(.footnote)
                             .foregroundColor(.secondary)
                         Spacer()
