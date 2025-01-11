@@ -59,8 +59,8 @@ struct ProfileDetailView: View {
                             // Placeholder for poke action
                         }) {
                             HStack(spacing: 4) {
-                                Image(systemName: "hand.point.right.fill")
-                                Text("Poke")
+                                Image(systemName: "hands.clap.fill")
+                                Text("CoLab")
                             }
                             .font(.subheadline)
                             .foregroundColor(.white)
