@@ -10,6 +10,7 @@ struct FilterOption: Identifiable, Hashable {
 }
 
 struct MatchmakingView: View {
+    @EnvironmentObject var appState: AppState
     @State private var searchText = ""
     
     // Updated placeholder data
@@ -266,6 +267,7 @@ struct PlaceholderProfile: Identifiable {
 #Preview {
     NavigationStack {
         MatchmakingView()
+            .environmentObject(AppState())
     }
     .preferredColorScheme(.dark)
 }

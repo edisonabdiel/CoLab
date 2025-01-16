@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MainView: View {
-    @EnvironmentObject var appState: AppState
+    @StateObject private var appState = AppState()
     @State private var selectedTab = 0
     
     var body: some View {
@@ -35,11 +35,11 @@ struct MainView: View {
                 }
         }
         .tint(.blue)
+        .environmentObject(appState)
     }
 }
 
 #Preview {
     MainView()
-        .environmentObject(AppState())
         .preferredColorScheme(.dark)
 }
