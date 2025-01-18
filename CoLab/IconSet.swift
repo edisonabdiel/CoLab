@@ -5,7 +5,7 @@ struct IconSet {
     struct TabBar {
         @ViewBuilder
         static func matchIcon() -> some View {
-            Label("Match", systemImage: "person.2.fill")
+            Label("CoLab", systemImage: "person.2.fill")
                 .symbolRenderingMode(.hierarchical)
         }
         

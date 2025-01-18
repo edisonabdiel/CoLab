@@ -1,6 +1,6 @@
 import SwiftUI
 
-// Update FilterOption to only include Last Online
+// FilterOption only includes Last Online
 struct FilterOption: Identifiable, Hashable {
     let id = UUID()
     let name: String
@@ -172,7 +172,7 @@ struct MatchmakingView: View {
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     HStack {
-                        Text("Find CoLabs")
+                        Text("CollaboNation")
                             .font(.title3.bold())
                         Spacer()
                         IconSet.Logo.standard()
